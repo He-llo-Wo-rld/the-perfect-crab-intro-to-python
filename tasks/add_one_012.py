@@ -4,11 +4,9 @@ import logconfig
 
 logging = logconfig.get_logger(__name__)
 
-
 # Original version
 def add_one(num):
     return num + 1
-
 
 # Improved version
 def add_one_improved(object: Union[int, float]) -> Union[int, float]:

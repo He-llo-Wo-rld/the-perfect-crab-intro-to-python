@@ -25,12 +25,10 @@ from lib.helpers import check_that_these_are_equal
 #           raise TypeError(f"Invalid argument type {type(arg).__name__}")
 #   return sum(args)
 
-
 def add_numbers(*args: Union[int, float]) -> Union[int, float]:
     if not all(isinstance(arg, (int, float)) for arg in args):
         raise TypeError("All arguments must be numbers (int or float)")
     return sum(args)
-
 
 # YOUR FUNCTION GOES ABOVE THIS LINE
 
