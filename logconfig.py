@@ -9,7 +9,8 @@ file_handler.setFormatter(logging.Formatter(FORMAT))
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter(FORMAT))
 
-logging.basicConfig(
-    level=logging.INFO,
-    handlers=[file_handler, console_handler]
-)
+logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
+
+
+def get_logger(name):
+    return logging.getLogger(name)
