@@ -27,7 +27,7 @@ from lib.helpers import check_that_these_are_equal
 
 
 def add_numbers(*args: Union[int, float]) -> Union[int, float]:
-    if any(not isinstance(arg, (int, float)) for arg in args):
+    if not all(isinstance(arg, (int, float)) for arg in args):
         raise TypeError("All arguments must be numbers (int or float)")
     return sum(args)
 
