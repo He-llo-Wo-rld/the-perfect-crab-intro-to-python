@@ -1,3 +1,9 @@
+import os
+import sys
+from typing import Union
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from lib.helpers import check_that_these_are_equal
 
 # Video alternative: https://vimeo.com/954334235/902b0b036d#t=84
@@ -12,6 +18,11 @@ from lib.helpers import check_that_these_are_equal
 
 # YOUR FUNCTION GOES BELOW THIS LINE
 
+
+def add_two(object: Union[int, float]) -> Union[int, float]:
+    if not isinstance(object, (int, float)):
+        raise TypeError(f"Invalid argument type {type(object).__name__}")
+    return round(object + 2, 2)
 
 
 # YOUR FUNCTION GOES ABOVE THIS LINE
@@ -29,9 +40,4 @@ from lib.helpers import check_that_these_are_equal
 
 print("Function: add_two")
 
-check_that_these_are_equal(
-  add_two(6),
-  8
-)
-
-# When you're done, move on to 014_multiply_numbers.py
+check_that_these_are_equal(add_two(6), 8)
