@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334279/dd2abfbdd7#t=308
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # A string is a sequence of characters (letters).
 
 # You've already seen the string syntax dotted around. Here it is:
@@ -13,13 +16,13 @@ my_name = "Kay"
 
 # Or single quotes:
 
-my_name = 'Kay'
+my_name = "Kay"
 
 # In Python, there's no meaningful difference between the two.
 
 # Try out creating a string with your name in it:
 
-your_name = ???
+your_name = "Serhii"
 print(your_name)
 
 # @TASK: Check your work by running this file with:

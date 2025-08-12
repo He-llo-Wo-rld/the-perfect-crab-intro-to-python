@@ -1,7 +1,6 @@
 # Video alternative: https://vimeo.com/954334279/dd2abfbdd7#t=0
 import os
 import sys
-from ast import arg
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.helpers import check_that_these_are_equal
@@ -73,12 +72,12 @@ def add_together_and_double(*args: int | float) -> int | float:
     """
     Steps:
     1. Check types
-    2.sum and *
+    2.sum and *2
     """
     if not all(isinstance(arg, (int, float)) for arg in args):
         raise TypeError("All arguments must be (int or float)")
     return sum(args) * 2
-
+ 
 
 check_that_these_are_equal(add_together_and_double(3, 4), 14)
 
