@@ -1,7 +1,10 @@
 # Video alternative: https://vimeo.com/954334376/0c486313d0#t=625
 
 # Here's a mindbender for you:
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 a = 10
 b = 20
 a = b
