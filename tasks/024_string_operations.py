@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334279/dd2abfbdd7#t=760
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.helpers import check_that_these_are_equal
 
 # We're going to show you some more things you can do with strings.
@@ -47,8 +50,8 @@ new_string = old_string.replace("YOUR_NAME", "Kay")
 
 my_string = "hello"
 
-len(my_string)              # <-- Independent Function
-my_string.replace("h", "w") # <-- Method Function
+len(my_string)  # <-- Independent Function
+my_string.replace("h", "w")  # <-- Method Function
 
 # Why the difference? It's a little complicated.
 #
@@ -75,15 +78,16 @@ print("Function: uppercase")
 
 # Search for 'python make string uppercase'
 
-def make_uppercase(string):
-  # Return the string in uppercase
-  pass
 
-check_that_these_are_equal(
-  make_uppercase("hello"), "HELLO")
+def make_uppercase(string: str) -> str:
+    if not isinstance(string, str):
+        raise TypeError(f"Invalid type {type(string).__name__}, must be str")
+    return string.upper()
 
-check_that_these_are_equal(
-  make_uppercase("World"), "WORLD")
+
+check_that_these_are_equal(make_uppercase("hello"), "HELLO")
+
+check_that_these_are_equal(make_uppercase("World"), "WORLD")
 
 # == Exercise Two ==
 
@@ -92,15 +96,16 @@ print("Function: lowercase")
 
 # Search for 'python make string lowercase'
 
-def make_lowercase(string):
-  # Return the string in lowercase
-  pass
 
-check_that_these_are_equal(
-  make_lowercase("HELLO"), "hello")
+def make_lowercase(string: str) -> str:
+    if not isinstance(string, str):
+        raise TypeError(f"Invalid type {type(string).__name__}, must be str")
+    return string.lower()
 
-check_that_these_are_equal(
-  make_lowercase("World"), "world")
+
+check_that_these_are_equal(make_lowercase("HELLO"), "hello")
+
+check_that_these_are_equal(make_lowercase("World"), "world")
 
 # == Exercise Three ==
 
@@ -109,14 +114,15 @@ print("Function: strip_whitespace")
 
 # Search for 'python remove whitespace from string'
 
-def strip_whitespace(string):
-  # Return the string with any whitespace removed from the start and end
-  pass
 
-check_that_these_are_equal(
-  strip_whitespace("hello "), "hello")
+def strip_whitespace(string: str) -> str:
+    if not isinstance(string, str):
+        raise TypeError(f"Invalid type {type(string).__name__}, must be str")
+    return string.strip()
 
-check_that_these_are_equal(
-  strip_whitespace(" hello world "), "hello world")
+
+check_that_these_are_equal(strip_whitespace("hello "), "hello")
+
+check_that_these_are_equal(strip_whitespace(" hello world "), "hello world")
 
 # When you're done, move on to 025_string_concatenation.py
