@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334279/dd2abfbdd7#t=1098
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.helpers import check_that_these_are_equal
 
 # Concatenation means 'joining together'.
@@ -51,18 +54,15 @@ print(f"Your name is {len(my_name)} characters long")
 print("")
 print("Function: greet")
 
-def greet(name):
-  # Return the string "Hello, Kay!" where "Kay" is the name provided
-  pass
 
-check_that_these_are_equal(
-  greet("Chuang-tzu"),
-  "Hello, Chuang-tzu!"
-)
+def greet(name: str) -> str:
+    if not isinstance(name, str):
+        raise TypeError(f"Invalid type {type(name).__name__}, must be str")
+    return f"Hello, {name}!"
 
-check_that_these_are_equal(
-  greet("Crab"),
-  "Hello, Crab!"
-)
+
+check_that_these_are_equal(greet("Chuang-tzu"), "Hello, Chuang-tzu!")
+
+check_that_these_are_equal(greet("Crab"), "Hello, Crab!")
 
 # When you're done, move on to 026_ifs.py
