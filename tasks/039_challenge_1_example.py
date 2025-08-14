@@ -1,5 +1,11 @@
 # Video alternative: https://vimeo.com/954334103/0aed500d39#t=0
+import numbers
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from collections import Counter
 # Congratulations! You've covered all of the key syntax, concepts, and ideas
 # necessary to succeed in your assessment. You can take it now if you like,
 # though you might be a little stronger if you do these extra challenges.
@@ -27,55 +33,66 @@ example_numbers = [1, 2, 3, -2, -2, 2, None, -3, 4, 4, None, 3, 3, 2, 2, 1]
 # 3: xxxx
 # 4: xx
 
+
 # First I'll show you the function that will combine all the other functions
 # together to create the graph. This will give you an idea of the flow of the
 # program.
 def generate_frequency_graph(numbers):
-  integers = get_only_integers(numbers)
-  positive_integers = convert_negatives_to_positives(integers)
-  number_frequency = calc_frequency_of_numbers(positive_integers)
-  graph = format_graph(number_frequency)
-  return graph
+    integers = get_only_integers(numbers)
+    positive_integers = convert_negatives_to_positives(integers)
+    number_frequency = calc_frequency_of_numbers(positive_integers)
+    graph = format_graph(number_frequency)
+    return graph
+
 
 # Here we'll use filtering to get rid of the None values
-def get_only_integers(numbers):
-  integers = []
-  for number in numbers:
-    if number != None:
-      integers.append(number)
-  return integers
+def get_only_integers(numbers: list) -> list[int]:
+  #   integers = []
+  #   for number in numbers:
+  #       if number != None:
+  #           integers.append(number)
+  #   return integers
+    if not isinstance(numbers, list):
+        raise TypeError("Invalid type must be list")
+    return [n for n in numbers if n != None and isinstance(n, int)]
+
 
 # Here we'll use mapping to convert negative numbers to positive numbers
 def convert_negatives_to_positives(numbers):
-  positive_integers = []
-  for number in numbers:
-    if number < 0:
-      # Note that a negative number multiplied by -1
-      # will be its positive equivalent
-      positive_integers.append(number * -1)
-    else:
-      positive_integers.append(number)
-  return positive_integers
+  #   positive_integers = []
+  #   for number in numbers:
+  #       if number < 0:
+  #           # Note that a negative number multiplied by -1
+  #           # will be its positive equivalent
+  #           positive_integers.append(number * -1)
+  #       else:
+  #           positive_integers.append(number)
+  #   return positive_integers
+    return [n * -1 if n < 0 else n for n in numbers]
+
 
 # Here we'll use dictionary summarising to create a graph of how frequently each
 # number shows up
 def calc_frequency_of_numbers(numbers):
-  number_frequency = {}
-  for number in numbers:
-    if number not in number_frequency:
-      number_frequency[number] = 1
-    else:
-      number_frequency[number] += 1
-  return number_frequency
+  #   number_frequency = {}
+  #   for number in numbers:
+  #       if number not in number_frequency:
+  #           number_frequency[number] = 1
+  #       else:
+  #           number_frequency[number] += 1
+  #   return number_frequency
+    return Counter(numbers)
+
 
 # Here we'll use summarising and mapping in the same loop to format the graph.
 def format_graph(number_frequency):
-  graph = ""
-  for number in number_frequency:
-    # Note the cool use of 'string multiplication' here!
-    # 'x' * 3 will give you 'xxx'
-    graph += f"{number}: {'x' * number_frequency[number]}\n"
-  return graph
+    graph = ""
+    for number in number_frequency:
+        # Note the cool use of 'string multiplication' here!
+        # 'x' * 3 will give you 'xxx'
+        graph += f"{number}: {'x' * number_frequency[number]}\n"
+    return graph
+
 
 # Now let's use it!
 print(generate_frequency_graph(example_numbers))
