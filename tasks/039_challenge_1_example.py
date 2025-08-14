@@ -1,5 +1,4 @@
 # Video alternative: https://vimeo.com/954334103/0aed500d39#t=0
-import numbers
 import os
 import sys
 
