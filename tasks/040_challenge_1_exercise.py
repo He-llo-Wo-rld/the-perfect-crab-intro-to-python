@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334103/0aed500d39#t=1295
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.helpers import check_that_these_are_equal
 
 # Now it's your turn.
@@ -27,36 +30,33 @@ from lib.helpers import check_that_these_are_equal
 print("")
 print("Function: report_long_words")
 
-def report_long_words(words):
-  pass
+
+def report_long_words(words: list[str]) -> str:
+    if not isinstance(words, list) or not all(isinstance(w, str) for w in words):
+        raise TypeError("Invalid type must be list of str")
+    filter_word = [w for w in words if len(w) > 10 and "-" not in w]
+    filter_word = [w[:15] + "..." if len(w) > 15 else w for w in filter_word]
+    return f"These words are quite long: {', '.join(filter_word)}"
+
 
 check_that_these_are_equal(
-  report_long_words([
-    'hello',
-    'nonbiological',
-    'Kay',
-    'this-is-a-long-word',
-    'antidisestablishmentarianism'
-  ]),
-  "These words are quite long: nonbiological, antidisestablis..."
+    report_long_words(
+        [
+            "hello",
+            "nonbiological",
+            "Kay",
+            "this-is-a-long-word",
+            "antidisestablishmentarianism",
+        ]
+    ),
+    "These words are quite long: nonbiological, antidisestablis...",
 )
 
 check_that_these_are_equal(
-  report_long_words([
-    'cat',
-    'dog',
-    'rhinosaurus',
-    'rhinosaurus-rex',
-    'frog'
-  ]),
-  "These words are quite long: rhinosaurus"
+    report_long_words(["cat", "dog", "rhinosaurus", "rhinosaurus-rex", "frog"]),
+    "These words are quite long: rhinosaurus",
 )
 
-check_that_these_are_equal(
-  report_long_words([
-    'cat'
-  ]),
-  "These words are quite long: "
-)
+check_that_these_are_equal(report_long_words(["cat"]), "These words are quite long: ")
 
 # Once you're done, move on to 041_challenge_2_example.py
