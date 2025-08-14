@@ -55,7 +55,7 @@ def add_cats_repeatedly(word_list: list, count: int) -> list:
     2.create str "cats"
     3.add to list while len(word_list) < count
     """
-    if not isinstance(word_list, list) and not isinstance(count, int):
+    if not isinstance(word_list, list) or not isinstance(count, int):
         raise TypeError("Invalid type, word_list must be list and count must be int")
     instance = "cats"
     i = 0
