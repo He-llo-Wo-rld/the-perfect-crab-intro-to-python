@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334322/c5a36d4407#t=214
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from lib.helpers import check_that_these_are_equal
 
 # Filtering is going through a list and keeping only some of the items,
@@ -17,12 +20,12 @@ from lib.helpers import check_that_these_are_equal
 # Imagine someone didn't put their age in
 raw_ages = [32, 40, None, 1, 32]
 
-clean_ages = [] # This is our accumulator again
+clean_ages = []  # This is our accumulator again
 
-for age in raw_ages: # We go through each age
-  # We combine a for with an if to remove 'None' items
-  if age != None:
-    clean_ages.append(age)
+for age in raw_ages:  # We go through each age
+    # We combine a for with an if to remove 'None' items
+    if age != None:
+        clean_ages.append(age)
 
 print(raw_ages)
 print(clean_ages)
@@ -34,13 +37,15 @@ print(clean_ages)
 print("")
 print("Function: only_positive_numbers")
 
-# Return a new list with only the positive numbers
-def only_positive_numbers(numbers):
-  pass
 
-check_that_these_are_equal(
-  only_positive_numbers([-4, 4, -3, 3]), [4, 3])
-check_that_these_are_equal(
-  only_positive_numbers([-100]), [])
+# Return a new list with only the positive numbers
+def only_positive_numbers(numbers: list[int]) -> list[int]:
+    if not isinstance(numbers, list) or not all(isinstance(n, int) for n in numbers):
+        raise TypeError("Invalid type must be list of int")
+    return [n for n in numbers if n >= 0]
+
+
+check_that_these_are_equal(only_positive_numbers([-4, 4, -3, 3]), [4, 3])
+check_that_these_are_equal(only_positive_numbers([-100]), [])
 
 # When you're done, move on to 037_dicts.py
