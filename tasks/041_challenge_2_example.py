@@ -1,5 +1,8 @@
 # Video alternative: https://vimeo.com/954334009/67af9910fc#t=0
+import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # Nice work on that last one! You might well want to consider taking the
 # assessment at this point.
 
